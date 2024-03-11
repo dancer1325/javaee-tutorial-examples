@@ -7,9 +7,9 @@
     </properties>
     <step id="callrecords" next="bills">
         <chunk checkpoint-policy="item" item-count="10">
-            <reader ref="CallRecordReader"></reader>
-            <processor ref="CallRecordProcessor"></processor>
-            <writer ref="CallRecordWriter"></writer>
+            <reader ref="CallRecordReader"></reader>  <!-- input retrieval part -->
+            <processor ref="CallRecordProcessor"></processor>       <!-- business processing part -->
+            <writer ref="CallRecordWriter"></writer>        <!-- output writing part -->
         </chunk>
     </step>
     <step id="bills">
