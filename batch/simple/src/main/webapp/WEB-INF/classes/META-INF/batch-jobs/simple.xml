@@ -5,15 +5,21 @@
         <property name="input_file" value="input.txt"/>
         <property name="output_file" value="output.txt"/>
     </properties>
+
+    <!-- Chunk-oriented step -->
     <step id="mychunk" next="mytask">
+        <!-- next           define execution order of the steps -->
         <chunk>
             <reader ref="MyReader"></reader>
             <processor ref="MyProcessor"></processor>
             <writer ref="MyWriter"></writer>
         </chunk>
     </step>
+
+    <!-- Task-oriented step -->
     <step id="mytask">
         <batchlet ref="MyBatchlet"></batchlet>
         <end on="COMPLETED"/>
+        <!-- end           define last step of the job -->
     </step>
 </job>

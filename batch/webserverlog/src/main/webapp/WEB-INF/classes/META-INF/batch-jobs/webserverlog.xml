@@ -13,7 +13,10 @@
     <listeners>
         <listener ref="InfoJobListener"/>
     </listeners>
+
+    <!-- Chunk-oriented step -->
     <step id="mobilefilter" next="mobileanalyzer">
+        <!-- next           define execution order of the steps -->
         <listeners>
             <listener ref="InfoItemProcessListener"/>
         </listeners>
@@ -23,8 +26,11 @@
             <writer ref="LogFilteredLineWriter"></writer>
         </chunk>
     </step>
+
+    <!-- Task-oriented step -->
     <step id="mobileanalyzer">
         <batchlet ref="MobileBatchlet"></batchlet>
         <end on="COMPLETED"/>
+        <!-- end           define last step of the job -->
     </step>
 </job>

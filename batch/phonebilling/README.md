@@ -17,3 +17,5 @@
 * business processing part
   * apply business logic 1 by 1    -- TODO: How to check --
 * checkpoints         -- TODO: How to check --
+* batch artifacts
+  * Check 'phonebilling.xml'

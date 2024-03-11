@@ -5,13 +5,18 @@
         <property name="airtime_price" value="0.08"/>
         <property name="tax_rate" value="0.07"/>
     </properties>
+
+    <!-- Chunk-oriented step -->
     <step id="callrecords" next="bills">
+        <!-- next           define execution order of the steps -->
         <chunk checkpoint-policy="item" item-count="10">
             <reader ref="CallRecordReader"></reader>  <!-- input retrieval part -->
             <processor ref="CallRecordProcessor"></processor>       <!-- business processing part -->
             <writer ref="CallRecordWriter"></writer>        <!-- output writing part -->
         </chunk>
     </step>
+
+    <!-- Chunk-oriented step -->
     <step id="bills">
         <chunk checkpoint-policy="item" item-count="2">
             <reader ref="BillReader">
@@ -19,13 +24,14 @@
                     <property name="firstItem" value="#{partitionPlan['firstItem']}"/>
                     <property name="numItems" value="#{partitionPlan['numItems']}"/>
                 </properties>
-            </reader>
-            <processor ref="BillProcessor"></processor>
-            <writer ref="BillWriter"></writer>
+            </reader>                       <!-- batch artifact -->
+            <processor ref="BillProcessor"></processor>        <!-- batch artifact -->
+            <writer ref="BillWriter"></writer>                 <!-- batch artifact -->
         </chunk>
         <partition>
             <mapper ref="BillPartitionMapper"/>
         </partition>
         <end on="COMPLETED"/>
+        <!-- end           define last step of the job -->
     </step>
 </job>
