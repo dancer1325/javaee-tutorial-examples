@@ -16,7 +16,6 @@
     <modules>
         <module>webserverlog</module>
 		<module>phonebilling</module>
-        <module>taskOrientedStepBatchJob</module>
         <module>simple</module>
     </modules>
     
